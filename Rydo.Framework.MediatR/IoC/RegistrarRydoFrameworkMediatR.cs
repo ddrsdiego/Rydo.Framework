@@ -19,6 +19,7 @@ namespace Rydo.Framework.MediatR.IoC
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
 
             container.Register(typeof(HandlerRequest<,>), assemblies);
+            container.RegisterCollection(typeof(IPipelineBehavior<,>), new[] { typeof(DefaultNoOpPipelineBehavior<,>) });
 
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
