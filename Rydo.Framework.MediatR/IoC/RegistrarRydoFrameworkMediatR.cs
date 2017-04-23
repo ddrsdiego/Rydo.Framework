@@ -19,7 +19,6 @@ namespace Rydo.Framework.MediatR.IoC
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
 
             container.Register(typeof(HandlerRequest<,>), assemblies);
-            container.Register(typeof(HandlerRequestAsync<,>), assemblies);
 
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
