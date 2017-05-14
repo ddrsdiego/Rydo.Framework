@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Rydo.Framework.Cache.Common;
+using Rydo.Framework.Cache.Redis.Provider;
+using Rydo.Framework.Data.Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
+using System.Transactions;
 
 namespace ConsoleApplication
 {
@@ -11,26 +13,38 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            //var employeeRepository = new EmployeeRepository();
 
-            //employeeRepository
-            //    .GetId("").Match(
-            //            failure: f => new InvalidOperationException(""),
-            //            success: result => result);
+            List<Person> people = new List<Person>();
 
-            //WriteLine("Enter the first number: ");
-            //var fst = ReadLine();
+            for (int i = 0; i < 96000; i++)
+            {
+                people.Add(new Person(i, $"Person {i}", new List<Contact> { new Contact("1", "123456789"), new Contact("1", "234567890") }));
+            }
 
-            //WriteLine("Enter the second number: ");
-            //var snd = ReadLine();
+            ICacheProvider cacheProvider = new RedisCacheProvider();
 
-            //Add(fst, snd).Match(
-            //    success: result => WriteLine($"First + Second = {result}"),
-            //    failure: WriteLine);
+            cacheProvider.Set("PEOPLE", people);
+            var contatos = cacheProvider.Get<List<Person>>("PEOPLE");
 
-            //ReadLine();
+            var dataContext = new DapperDataContext();
 
+            dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipo ( IdTipoOferta, DescricaTipoOferta ) VALUES ( @idTipoOferta, @descricaTipoOferta )", new[]
+            {
+                new { idTipoOferta = 1, descricaTipoOferta = "Automatica" },
+                new { idTipoOferta = 2, descricaTipoOferta = "Doadora" },
+                new { idTipoOferta = 3, descricaTipoOferta = "Tomadora" }
+            });
+
+            dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipoMovimento ( IdTipoMovimentoOferta, DescricaoTipoMovimentoOferta ) VALUES ( @idTipoMovimentoOferta, @descricaoTipoMovimentoOferta )", new[]
+            {
+                new { idTipoMovimentoOferta = 1, descricaoTipoMovimentoOferta = "Disponibilizar" },
+                new { idTipoMovimentoOferta = 2, descricaoTipoMovimentoOferta = "Cancelar" },
+            });
         }
+
+        static Func<int, bool> IsPositivo = (numero) => { return numero > 0; };
+
+        static Func<bool, bool> Where = (numero) => { return true; };
 
         public static Helper.Try<Exception, double> Add(string fst, string snd)
         {
@@ -43,6 +57,32 @@ namespace ConsoleApplication
                 return new ArgumentException($"Failed to parse '{snd}' to double.", nameof(snd));
 
             return f + s;
+        }
+
+        public class Contact
+        {
+            public Contact(string type, string value)
+            {
+                Type = type;
+                Value = value;
+            }
+
+            public string Type { get; private set; }
+            public string Value { get; private set; }
+        }
+
+        public class Person
+        {
+            public Person(long id, string name, List<Contact> contacts)
+            {
+                Id = id;
+                Name = name;
+                Contacts = contacts;
+            }
+
+            public long Id { get; set; }
+            public string Name { get; set; }
+            public List<Contact> Contacts { get; set; }
         }
 
         public class FailedToParseDoubleException : Exception
@@ -100,24 +140,9 @@ namespace ConsoleApplication
         }
     }
 
-    public class EmployeeRepository : IEmployeeRepository
+    public class Perfil
     {
-        public Helper.Try<Exception, Employee> GetId(string id)
-        {
-            if (string.IsNullOrEmpty(id))
-                return new ArgumentException($"Failed to parse '{id}' to double.", nameof(id));
-
-            return new Employee { };
-        }
-    }
-
-    public interface IEmployeeRepository
-    {
-        Helper.Try<Exception, Employee> GetId(string id);
-    }
-
-    public class Employee
-    {
-        public string Id { get; set; }
+        public int IdPerfil { get; set; }
+        public string DescricaoPerfil { get; set; }
     }
 }
