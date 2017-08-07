@@ -1,11 +1,10 @@
 ﻿using Rydo.Framework.Cache.Common;
 using Rydo.Framework.Cache.Redis.Provider;
 using Rydo.Framework.Data.Dapper;
+using Rydo.Framework.MediatR.IoC;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Transactions;
+using System.ComponentModel;
 
 namespace ConsoleApplication
 {
@@ -14,32 +13,33 @@ namespace ConsoleApplication
         static void Main(string[] args)
         {
 
-            List<Person> people = new List<Person>();
 
-            for (int i = 0; i < 96000; i++)
-            {
-                people.Add(new Person(i, $"Person {i}", new List<Contact> { new Contact("1", "123456789"), new Contact("1", "234567890") }));
-            }
+            //List<Person> people = new List<Person>();
 
-            ICacheProvider cacheProvider = new RedisCacheProvider();
+            //for (int i = 0; i < 96000; i++)
+            //{
+            //    people.Add(new Person(i, $"Person {i}", new List<Contact> { new Contact("1", "123456789"), new Contact("1", "234567890") }));
+            //}
 
-            cacheProvider.Set("PEOPLE", people);
-            var contatos = cacheProvider.Get<List<Person>>("PEOPLE");
+            //ICacheProvider cacheProvider = new RedisCacheProvider();
 
-            var dataContext = new DapperDataContext();
+            //cacheProvider.Set("PEOPLE", people);
+            //var contatos = cacheProvider.Get<List<Person>>("PEOPLE");
 
-            dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipo ( IdTipoOferta, DescricaTipoOferta ) VALUES ( @idTipoOferta, @descricaTipoOferta )", new[]
-            {
-                new { idTipoOferta = 1, descricaTipoOferta = "Automatica" },
-                new { idTipoOferta = 2, descricaTipoOferta = "Doadora" },
-                new { idTipoOferta = 3, descricaTipoOferta = "Tomadora" }
-            });
+            //var dataContext = new DapperDataContext();
 
-            dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipoMovimento ( IdTipoMovimentoOferta, DescricaoTipoMovimentoOferta ) VALUES ( @idTipoMovimentoOferta, @descricaoTipoMovimentoOferta )", new[]
-            {
-                new { idTipoMovimentoOferta = 1, descricaoTipoMovimentoOferta = "Disponibilizar" },
-                new { idTipoMovimentoOferta = 2, descricaoTipoMovimentoOferta = "Cancelar" },
-            });
+            //dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipo ( IdTipoOferta, DescricaTipoOferta ) VALUES ( @idTipoOferta, @descricaTipoOferta )", new[]
+            //{
+            //    new { idTipoOferta = 1, descricaTipoOferta = "Automatica" },
+            //    new { idTipoOferta = 2, descricaTipoOferta = "Doadora" },
+            //    new { idTipoOferta = 3, descricaTipoOferta = "Tomadora" }
+            //});
+
+            //dataContext.ExecuteNonQueryText("INSERT INTO OfertaTipoMovimento ( IdTipoMovimentoOferta, DescricaoTipoMovimentoOferta ) VALUES ( @idTipoMovimentoOferta, @descricaoTipoMovimentoOferta )", new[]
+            //{
+            //    new { idTipoMovimentoOferta = 1, descricaoTipoMovimentoOferta = "Disponibilizar" },
+            //    new { idTipoMovimentoOferta = 2, descricaoTipoMovimentoOferta = "Cancelar" },
+            //});
         }
 
         static Func<int, bool> IsPositivo = (numero) => { return numero > 0; };

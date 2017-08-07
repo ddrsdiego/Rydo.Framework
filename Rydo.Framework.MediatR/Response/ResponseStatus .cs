@@ -48,7 +48,7 @@ namespace Rydo.Framework.MediatR.Response
                 var listErros = new List<string>();
 
                 if (mDictionaryRetutn != null && mDictionaryRetutn.Any())
-                    listErros.AddRange(mDictionaryRetutn.Select(x => x.ToString()));
+                    listErros.AddRange(mDictionaryRetutn.Select(x => x.Value.ToString()));
 
                 return listErros;
             }

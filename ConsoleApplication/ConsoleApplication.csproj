@@ -62,6 +62,10 @@
       <Project>{dc12f695-5ec3-49cf-93eb-5d3e7bd9b5e4}</Project>
       <Name>Rydo.Framework.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rydo.Framework.MediatR\Rydo.Framework.MediatR.csproj">
+      <Project>{33088B3F-13CC-4D94-93DF-F14DE71F23E1}</Project>
+      <Name>Rydo.Framework.MediatR</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

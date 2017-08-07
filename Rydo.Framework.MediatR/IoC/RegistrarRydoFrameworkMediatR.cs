@@ -17,8 +17,15 @@ namespace Rydo.Framework.MediatR.IoC
 
             container.Register(typeof(IRequestHandler<,>), assemblies);
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
+            container.Register(typeof(INotificationHandler<>), assemblies);
+
+            container.RegisterCollection(typeof(INotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(IAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(ICancellableAsyncNotificationHandler<>), assemblies);
 
             container.Register(typeof(HandlerRequest<,>), assemblies);
+            container.Register(typeof(IntegrationEventHandler<,>), assemblies);
+
             container.RegisterCollection(typeof(IPipelineBehavior<,>), new[] { typeof(DefaultNoOpPipelineBehavior<,>) });
 
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));

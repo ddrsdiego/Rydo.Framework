@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.MediatR", "Rydo.Framework.MediatR\Rydo.Framework.MediatR.csproj", "{33088B3F-13CC-4D94-93DF-F14DE71F23E1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.Dominio", "Rydo.Framework.Dominio\Rydo.Framework.Dominio.csproj", "{E1E66090-195F-44C0-B805-5F103ED0DBCF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3021E40B-60A0-4C74-A6DF-6D47AB053AD9}"
 	ProjectSection(SolutionItems) = preProject
 		build.ps1 = build.ps1
 		nuget.config = nuget.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.MediatR", "Rydo.Framework.MediatR\Rydo.Framework.MediatR.csproj", "{33088B3F-13CC-4D94-93DF-F14DE71F23E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.Dominio", "Rydo.Framework.Dominio\Rydo.Framework.Dominio.csproj", "{E1E66090-195F-44C0-B805-5F103ED0DBCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{CEF34EBC-E914-42F6-A784-9D926528AFBC}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.Data", "Rydo.Framework.Data\Rydo.Framework.Data.csproj", "{DC12F695-5EC3-49CF-93EB-5D3E7BD9B5E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.Cache", "Rydo.Framework.Cache\Rydo.Framework.Cache.csproj", "{372FED4E-E47F-4AC2-917D-C3C785E6B27E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rydo.Framework.Core.MediatR", "Rydo.Framework.Core.MediatR\Rydo.Framework.Core.MediatR.csproj", "{88C1D92D-68E0-4964-A1B9-9D42BD5863C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rydo.Framework.WebApi", "Rydo.Framework.WebApi\Rydo.Framework.WebApi.csproj", "{23496A54-4D12-4490-B808-258DD96239D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{372FED4E-E47F-4AC2-917D-C3C785E6B27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372FED4E-E47F-4AC2-917D-C3C785E6B27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372FED4E-E47F-4AC2-917D-C3C785E6B27E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C1D92D-68E0-4964-A1B9-9D42BD5863C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C1D92D-68E0-4964-A1B9-9D42BD5863C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C1D92D-68E0-4964-A1B9-9D42BD5863C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C1D92D-68E0-4964-A1B9-9D42BD5863C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23496A54-4D12-4490-B808-258DD96239D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23496A54-4D12-4490-B808-258DD96239D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23496A54-4D12-4490-B808-258DD96239D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23496A54-4D12-4490-B808-258DD96239D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,11 +22,11 @@ namespace Rydo.Framework.Data.Dapper
             ExecuteNonQueryTextAsync(commandText, null);
         }
 
-        public void ExecuteNonQueryTextAsync(string commandText, dynamic parameters)
+        public async void ExecuteNonQueryTextAsync(string commandText, dynamic parameters)
         {
             using (var conn = DbUtil.Instancia.ObterConnection())
             {
-                conn.ExecuteAsync(commandText, (object)parameters);
+                var result = await conn.ExecuteAsync(commandText, (object)parameters);
             }
         }
 
